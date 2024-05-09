@@ -23,6 +23,7 @@ import org.apache.http.impl.client.BasicAuthCache;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.client.StandardHttpRequestRetryHandler;
 import org.codehaus.plexus.util.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -136,6 +137,7 @@ final class DefaultFileDownloader implements FileDownloader {
                 .disableContentCompression()
                 .useSystemProperties()
                 .setDefaultCredentialsProvider(credentialsProvider)
+                .setRetryHandler(new StandardHttpRequestRetryHandler())
                 .build();
     }
 }
